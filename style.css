@@ -17,7 +17,8 @@
   --shadow:0 22px 70px rgba(0,0,0,.55);
   --radius:24px;
 
-  --maxw:980px;
+  /* ↑ aumentei um pouco pra não ficar estreito no desktop */
+  --maxw:1200px;
 }
 
 /* =========================
@@ -179,21 +180,24 @@ h2{
 }
 
 /* =========================
-   GALERIA
+   GALERIA (CORRIGIDA: FLUIDA E MAIS LARGA)
    ========================= */
 .gallery{
   border-top:1px solid var(--stroke);
+  padding-left:0;
+  padding-right:0;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:18px;
+  margin-top:14px;
 }
 
+/* responsivo geral */
 @media (max-width:780px){
   .card{ padding:22px; }
-  .grid{ grid-template-columns:repeat(2,1fr); }
 }
 
 .photo{
@@ -333,7 +337,7 @@ h2{
 }
 
 /* =========================
-   LIGHTBOX (ROMÂNTICO)
+   LIGHTBOX
    ========================= */
 .lightbox{
   position:fixed;
@@ -387,6 +391,10 @@ h2{
   position:fixed;
   top:14px;
   right:14px;
+}
+
+@media(max-width:720px){
+  .lb-nav{ display:none; }
 }
 
 /* =========================
@@ -447,6 +455,7 @@ h2{
   font-size:clamp(32px,6vw,56px);
   font-weight:900;
   letter-spacing:1px;
+  text-align:center;
 
   background:linear-gradient(135deg,var(--pink),var(--pink-soft));
   -webkit-background-clip:text;
@@ -462,4 +471,12 @@ h2{
   20%{ opacity:1; transform:scale(1) translateY(0); }
   80%{ opacity:1; }
   100%{ opacity:0; transform:scale(1.05) translateY(-10px); }
+}
+
+/* texto do feliz 20 no celular (evita “esquisito”) */
+@media (max-width:600px){
+  .feliz-20 span{
+    font-size:28px;
+    padding:0 12px;
+  }
 }
