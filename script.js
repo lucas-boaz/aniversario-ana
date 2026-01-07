@@ -3,7 +3,7 @@
    ========================= */
 const nome = "Ana";
 const assinatura = "Lucas";
-const frase = "Você é meu lugar de paz. 💖";
+const frase = "Sim, você está ficando mais velha! 😂💖";
 
 const isMobile = window.innerWidth < 768;
 const $ = (id) => document.getElementById(id);
@@ -83,7 +83,7 @@ if (audio) audio.volume = volumeNormal;
 
 function atualizarBotaoMusica(tocando){
   if (!btnMusica) return;
-  btnMusica.textContent = tocando ? "⏸️ Pausar música" : "🎵 Música";
+  btnMusica.textContent = tocando ? "⏸️ Pausar música" : "🎵 Escuta essa aqui";
   btnMusica.setAttribute("aria-pressed", String(tocando));
 }
 
@@ -337,3 +337,4 @@ meuVideo && meuVideo.addEventListener("ended", () => {
    INICIALIZAÇÃO
    ========================= */
 atualizarBotaoMusica(audio ? !audio.paused : false);
+
