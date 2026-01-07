@@ -49,7 +49,7 @@ function mostrarFeliz20(){
   wrap.className = "feliz-20";
 
   const span = document.createElement("span");
-  span.textContent = "Feliz 20 anos, Ana Luiza 🐬💖";
+  span.textContent = "Feliz 20 anos, meu golfinho 🐬💖";
 
   wrap.appendChild(span);
   document.body.appendChild(wrap);
@@ -309,3 +309,4 @@ document.addEventListener("keydown", (e) => {
    INICIALIZAÇÃO
    ========================= */
 atualizarBotaoMusica(audio ? !audio.paused : false);
+
