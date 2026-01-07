@@ -8,18 +8,14 @@
 </head>
 
 <body>
-  <!-- FUNDO -->
   <div class="bg"></div>
 
   <main class="card">
-
     <!-- TOPO -->
     <header class="top">
       <div class="badge">🎂 Hoje é o seu dia!</div>
       <h1>Feliz aniversário, <span id="nome">Ana</span> ❤️</h1>
-      <p class="sub">
-        <span id="frase">Você é meu lugar de paz. 💖</span>
-      </p>
+      <p class="sub"><span id="frase">Você é meu lugar de paz. 💖</span></p>
     </header>
 
     <!-- MENSAGEM -->
@@ -32,22 +28,21 @@
         Que essa nova volta ao sol traga tudo o que você merece, e que eu esteja com você em cada capítulo.
       </p>
 
-      <!-- BOTÕES -->
       <div class="actions">
         <button id="btnSurpresa" class="btn">✨ Clique para uma surpresa</button>
         <button id="btnMusica" class="btn ghost" aria-pressed="false">🎵 Música</button>
         <button id="btnGolfinho" class="btn ghost" type="button">🐬 Golfinho</button>
+        <button id="btnVideo" class="btn ghost" type="button" aria-haspopup="dialog">🎬 Vídeo</button>
       </div>
 
-      <!-- ÁUDIO -->
+      <!-- MÚSICA -->
       <audio id="audio" preload="auto" loop>
         <source src="musica.mp3" type="audio/mpeg" />
       </audio>
 
-      <p class="extra">
-        Curta seu dia, meu amor! Obrigado por ser você!  
-        Você é uma das melhores coisas que aconteceram em minha vida.
-      </p>
+      <div class="extra">
+        Curta seu dia, meu amor! Obrigado por ser você! Você é uma das melhores coisas que aconteceram em minha vida.
+      </div>
     </section>
 
     <!-- GALERIA -->
@@ -56,22 +51,38 @@
 
       <div class="grid">
         <figure class="photo">
-          <img src="fotos/1.jpg" alt="Você sendo você" loading="lazy">
+          <img src="fotos/1.jpg" alt="Olha você aqui — 1" loading="lazy">
         </figure>
+
         <figure class="photo">
-          <img src="fotos/2.jpg" alt="Brincalhona e sorridente" loading="lazy">
+          <img src="fotos/2.jpg" alt="Olha você aqui — 2" loading="lazy">
         </figure>
+
         <figure class="photo">
-          <img src="fotos/3.jpg" alt="Gostosa e ousada" loading="lazy">
+          <img src="fotos/3.jpg" alt="Olha você aqui — 3" loading="lazy">
         </figure>
+
         <figure class="photo">
-          <img src="fotos/4.jpg" alt="Bonita e resplandecente" loading="lazy">
+          <img src="fotos/4.jpg" alt="Olha você aqui — 4" loading="lazy">
         </figure>
+
         <figure class="photo">
-          <img src="fotos/5.jpg" alt="Charmosa e cativante" loading="lazy">
+          <img src="fotos/5.jpg" alt="Olha você aqui — 5" loading="lazy">
         </figure>
+
+        <!-- nova 6: elegante/caprichosa -->
         <figure class="photo">
-          <img src="fotos/6.jpg" alt="Você, sempre incrível" loading="lazy">
+          <img src="fotos/6.jpg" alt="Elegante e caprichosa ✨" loading="lazy">
+        </figure>
+
+        <!-- foto 7: aventureira/curiosa -->
+        <figure class="photo">
+          <img src="fotos/7.jpg" alt="Aventureira e curiosa 🌿" loading="lazy">
+        </figure>
+
+        <!-- sua antiga 6 vira 8 (mantém o texto da 6 antiga) -->
+        <figure class="photo">
+          <img src="fotos/8.jpg" alt="Olha você aqui — 6" loading="lazy">
         </figure>
       </div>
     </section>
@@ -79,28 +90,27 @@
     <!-- 20 MOTIVOS -->
     <section class="motivos">
       <h2>20 motivos porque eu te amo</h2>
-
       <ol class="motivos-lista">
-        <li>Porque é MAGNÂNIMA.</li>
-        <li>Você é amorosa.</li>
-        <li>Você é inteligente.</li>
-        <li>Você é determinada.</li>
-        <li>Você é carinhosa.</li>
-        <li>Você é estilosa.</li>
-        <li>Você é atenciosa.</li>
-        <li>Você é divertida.</li>
-        <li>Você é cheirosa.</li>
-        <li>Você é compreensiva.</li>
-        <li>Você é empática.</li>
-        <li>Você é comunicativa.</li>
-        <li>Você é companheira.</li>
-        <li>Você é verdadeira.</li>
-        <li>Você é gostosa.</li>
-        <li>Você é linda.</li>
-        <li>Você é autêntica.</li>
-        <li>Você é talentosa.</li>
-        <li>Você é forte.</li>
-        <li><strong>Você é INCRÍVEL.</strong></li>
+        <li>Porque você me alegra</li>
+        <li>Você é amorosa</li>
+        <li>Você é inteligente</li>
+        <li>Você é determinada</li>
+        <li>Você é carinhosa</li>
+        <li>Você é estilosa</li>
+        <li>Você é atenciosa</li>
+        <li>Você é divertida</li>
+        <li>Você é cheirosa</li>
+        <li>Você é compreensiva</li>
+        <li>Você é empática</li>
+        <li>Você é comunicativa</li>
+        <li>Você é companheira</li>
+        <li>Você é verdadeira</li>
+        <li>Você é gostosa</li>
+        <li>Você é linda</li>
+        <li>Você é autêntica</li>
+        <li>Você é talentosa</li>
+        <li>Você é forte</li>
+        <li><strong>VOCÊ É INCRÍVEL</strong></li>
       </ol>
     </section>
 
@@ -108,13 +118,11 @@
     <footer class="footer">
       <p>Feito com amor, por <span id="assinatura">Lucas</span> 💙</p>
     </footer>
-
   </main>
 
   <!-- MODAL SURPRESA -->
   <div class="modal" id="modal" aria-hidden="true">
     <div class="modal-card" role="dialog" aria-modal="true" aria-label="Surpresa">
-
       <h3>🌟 Eu te amo!</h3>
 
       <div class="surpresa-img">
@@ -122,27 +130,42 @@
       </div>
 
       <p id="surpresaTexto">
-        Ana, que esse novo ciclo venha leve, cheio de sorrisos, sonhos realizados e muito amor. Eu te amo!
+        Ana, que esse novo ciclo venha leve, cheio de sorrisos, sonhos realizados e muito amor. Eu te amo.
       </p>
 
       <button class="btn" id="btnFechar">Fechar</button>
     </div>
   </div>
 
+  <!-- MODAL VÍDEO -->
+  <div class="modal" id="videoModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Vídeo">
+      <h3>🎬 Um vídeo pra você</h3>
+
+      <div class="video-wrap">
+        <video id="meuVideo" controls playsinline preload="metadata">
+          <source src="video.mp4" type="video/mp4">
+          Seu navegador não suporta vídeo.
+        </video>
+      </div>
+
+      <button class="btn" id="btnFecharVideo">Fechar</button>
+    </div>
+  </div>
+
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lb-close" id="lbClose" aria-label="Fechar">✕</button>
-    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Foto anterior">‹</button>
+    <button class="lb-nav" id="lbPrev" aria-label="Anterior">‹</button>
 
     <figure class="lb-figure">
-      <img id="lbImg" alt="Foto ampliada">
+      <img id="lbImg" alt="">
       <figcaption id="lbCaption"></figcaption>
     </figure>
 
-    <button class="lb-nav lb-next" id="lbNext" aria-label="Próxima foto">›</button>
+    <button class="lb-nav" id="lbNext" aria-label="Próxima">›</button>
   </div>
 
-  <!-- SCRIPT -->
   <script src="script.js"></script>
 </body>
 </html>
