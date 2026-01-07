@@ -1,9 +1,8 @@
 /* =========================
    CONFIGURAÇÕES
    ========================= */
-const nome = "Ana";
+const nome = "Ana Luiza";
 const assinatura = "Lucas";
-const frase = "Sim, você está ficando mais velha! 😂💖";
 
 const isMobile = window.innerWidth < 768;
 const $ = (id) => document.getElementById(id);
@@ -13,22 +12,6 @@ const $ = (id) => document.getElementById(id);
    ========================= */
 $("nome") && ($("nome").textContent = nome);
 $("assinatura") && ($("assinatura").textContent = assinatura);
-$("frase") && ($("frase").textContent = frase);
-
-/* =========================
-   CONFETE
-   ========================= */
-function soltarConfete(qtd = 120){
-  for (let i = 0; i < qtd; i++){
-    const c = document.createElement("div");
-    c.className = "confetti";
-    c.style.left = Math.random() * 100 + "vw";
-    c.style.background = Math.random() > 0.5 ? "#ff5aa5" : "#ff9acb";
-    c.style.animationDuration = (isMobile ? 2.2 : 2.6) + Math.random() * (isMobile ? 1.2 : 2) + "s";
-    document.body.appendChild(c);
-    setTimeout(() => c.remove(), 5200);
-  }
-}
 
 /* =========================
    BOLHAS (GOLFINHO)
@@ -42,8 +25,13 @@ function soltarBolhas(qtd = 20){
     const size = 8 + Math.random() * (isMobile ? 10 : 18);
     b.style.width = b.style.height = size + "px";
 
-    b.style.animationDuration = (isMobile ? 2.4 : 3) + Math.random() * (isMobile ? 1.2 : 2) + "s";
-    b.style.setProperty("--dx", (Math.random() * (isMobile ? 40 : 80) - (isMobile ? 20 : 40)) + "px");
+    b.style.animationDuration =
+      (isMobile ? 2.4 : 3) + Math.random() * (isMobile ? 1.2 : 2) + "s";
+
+    b.style.setProperty("--dx",
+      (Math.random() * (isMobile ? 40 : 80) - (isMobile ? 20 : 40)) + "px"
+    );
+
     b.style.setProperty("--s", (0.6 + Math.random() * 1.2).toFixed(2));
 
     document.body.appendChild(b);
@@ -61,12 +49,12 @@ function mostrarFeliz20(){
   wrap.className = "feliz-20";
 
   const span = document.createElement("span");
-  span.textContent = "Feliz 20 anos, meu golfinho 🐬💖";
+  span.textContent = "Feliz 20 anos, Ana Luiza 🐬💖";
 
   wrap.appendChild(span);
   document.body.appendChild(wrap);
 
-  setTimeout(() => wrap.remove(), 3000);
+  setTimeout(() => wrap.remove(), 3200);
 }
 
 /* =========================
@@ -75,15 +63,16 @@ function mostrarFeliz20(){
 const audio = $("audio");
 const btnMusica = $("btnMusica");
 
-let volumeNormal = 0.85;   // volume padrão
-const volumeVideo = 0.08;  // volume durante vídeo
+let volumeNormal = 0.85;
+const volumeVideo = 0.08;
 let fadeTimer = null;
 
 if (audio) audio.volume = volumeNormal;
 
 function atualizarBotaoMusica(tocando){
   if (!btnMusica) return;
-  btnMusica.textContent = tocando ? "⏸️ Pausar música" : "🎵 Escuta essa aqui";
+  // texto fixo do seu botão
+  btnMusica.textContent = tocando ? "⏸️ Pausar" : "🎵 Escuta essa aqui";
   btnMusica.setAttribute("aria-pressed", String(tocando));
 }
 
@@ -114,10 +103,8 @@ async function toggleMusica(){
   try{
     if (audio.paused){
       await audio.play();
-      // guarda o volume como "normal" (se o usuário mexer)
       volumeNormal = audio.volume || volumeNormal;
       atualizarBotaoMusica(true);
-      soltarConfete(isMobile ? 14 : 30);
     } else {
       audio.pause();
       atualizarBotaoMusica(false);
@@ -128,7 +115,6 @@ async function toggleMusica(){
 }
 
 btnMusica && btnMusica.addEventListener("click", toggleMusica);
-audio && audio.addEventListener("ended", () => atualizarBotaoMusica(false));
 
 /* =========================
    MODAL SURPRESA
@@ -142,7 +128,6 @@ function abrirModal(){
   modal.classList.add("show");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.animationPlayState = "paused";
-  soltarConfete(isMobile ? 70 : 140);
 }
 
 function fecharModal(){
@@ -217,57 +202,39 @@ lightbox && lightbox.addEventListener("click", (e) => {
   if (e.target === lightbox) fecharLightbox();
 });
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape"){
-    fecharModal();
-    fecharVideo();     // existe mais abaixo
-    fecharLightbox();
-  }
-
-  if (!lightbox || !lightbox.classList.contains("show")) return;
-  if (e.key === "ArrowLeft") anterior();
-  if (e.key === "ArrowRight") proxima();
-});
-
 /* Swipe (celular) */
 let touchStartX = 0;
 let touchStartY = 0;
 
-function isLightboxOpen(){
-  return lightbox && lightbox.classList.contains("show");
-}
-
 lightbox && lightbox.addEventListener("touchstart", (e) => {
-  if (!isLightboxOpen()) return;
   const t = e.touches[0];
   touchStartX = t.clientX;
   touchStartY = t.clientY;
 }, { passive: true });
 
 lightbox && lightbox.addEventListener("touchend", (e) => {
-  if (!isLightboxOpen()) return;
   const t = e.changedTouches[0];
   const dx = t.clientX - touchStartX;
   const dy = t.clientY - touchStartY;
 
-  if (Math.abs(dy) > Math.abs(dx)) return;   // ignora gesto vertical
-  if (Math.abs(dx) < 45) return;             // sensibilidade
+  if (Math.abs(dy) > Math.abs(dx)) return;
+  if (Math.abs(dx) < 45) return;
 
   dx > 0 ? anterior() : proxima();
 }, { passive: true });
 
 /* =========================
-   BOTÃO GOLFINHO
+   BOTÃO GOLFINHO FLUTUANTE
+   (somente bolhas + frase)
    ========================= */
 const btnGolfinho = $("btnGolfinho");
 btnGolfinho && btnGolfinho.addEventListener("click", () => {
-  soltarBolhas(isMobile ? 10 : 24);
-  soltarConfete(isMobile ? 8 : 22);
+  soltarBolhas(isMobile ? 10 : 22);
   mostrarFeliz20();
 });
 
 /* =========================
-   MODAL VÍDEO + DUCKING (fade)
+   MODAL VÍDEO + DUCKING
    ========================= */
 const btnVideo = $("btnVideo");
 const videoModal = $("videoModal");
@@ -282,10 +249,8 @@ function abrirVideo(){
   videoModal.setAttribute("aria-hidden", "false");
   document.body.style.animationPlayState = "paused";
 
-  // marca se a música estava tocando (pra respeitar o estado do usuário)
   musicaEstavaTocandoAntesDoVideo = !!(audio && !audio.paused);
 
-  // tenta dar play no vídeo (no mobile pode exigir clique no play, normal)
   try{ meuVideo && meuVideo.play(); } catch {}
 }
 
@@ -301,7 +266,6 @@ function fecharVideo(){
     meuVideo.currentTime = 0;
   }
 
-  // se a música estava tocando antes, volta o volume suavemente
   if (audio && musicaEstavaTocandoAntesDoVideo){
     fadeVolume(audio, volumeNormal, 900);
   }
@@ -319,9 +283,7 @@ meuVideo && meuVideo.addEventListener("play", () => {
   if (!audio) return;
   if (!musicaEstavaTocandoAntesDoVideo) return;
 
-  // guarda volume atual como "normal" caso o usuário tenha ajustado
   if (audio.volume > volumeVideo) volumeNormal = audio.volume;
-
   fadeVolume(audio, volumeVideo, 700);
 });
 
@@ -334,7 +296,16 @@ meuVideo && meuVideo.addEventListener("ended", () => {
 });
 
 /* =========================
+   TECLAS (ESC)
+   ========================= */
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  fecharModal();
+  fecharVideo();
+  fecharLightbox();
+});
+
+/* =========================
    INICIALIZAÇÃO
    ========================= */
 atualizarBotaoMusica(audio ? !audio.paused : false);
-
