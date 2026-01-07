@@ -380,3 +380,62 @@ h2{
     bottom:14px;
   }
 }
+/* =========================
+   MELHORIA DO MODAL DE VÍDEO (PC + CELULAR)
+   ========================= */
+
+/* deixa o conteúdo do modal mais elegante e com limite de largura */
+#videoModal .modal-card{
+  width: min(520px, 92vw);
+}
+
+/* "moldura" do vídeo no estilo reels (vertical) */
+#videoModal .video-wrap{
+  margin: 14px auto 16px;
+  width: min(420px, 90vw);
+  max-height: 72vh;
+
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--stroke);
+  background: rgba(0,0,0,.45);
+
+  display: grid;
+  place-items: center;
+}
+
+/* garante proporção e melhor encaixe do vídeo */
+#videoModal .video-wrap video{
+  width: 100%;
+  height: auto;
+  max-height: 72vh;
+
+  /* visual bonito: centraliza e corta só se precisar */
+  object-fit: contain;
+
+  /* ajuda quando o vídeo é vertical (9:16) */
+  aspect-ratio: 9 / 16;
+
+  background: #000;
+  border-radius: 16px;
+}
+
+/* em telas grandes, dá um pouco mais de respiro */
+@media (min-width: 900px){
+  #videoModal .video-wrap{
+    width: 420px;
+    max-height: 76vh;
+  }
+}
+
+/* em telas pequenas, usa mais largura */
+@media (max-width: 600px){
+  #videoModal .modal-card{
+    width: min(520px, 94vw);
+  }
+  #videoModal .video-wrap{
+    width: min(460px, 94vw);
+    max-height: 70vh;
+  }
+}
+
