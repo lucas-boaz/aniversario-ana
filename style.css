@@ -17,7 +17,6 @@
   --shadow:0 22px 70px rgba(0,0,0,.55);
   --radius:24px;
 
-  /* mais largo no desktop */
   --maxw:1200px;
 }
 
@@ -28,7 +27,7 @@
 html,body{
   height:100%;
   margin:0;
-  overscroll-behavior: none;
+  overscroll-behavior:none;
 }
 
 /* =========================
@@ -41,10 +40,10 @@ body{
 
   background: linear-gradient(
     120deg,
-    rgba(255,90,165,.35),
-    rgba(255,154,203,.35),
-    rgba(110,231,255,.15),
-    rgba(255,90,165,.35)
+    rgba(255,90,165,.38),
+    rgba(255,154,203,.36),
+    rgba(110,231,255,.14),
+    rgba(255,90,165,.34)
   );
   background-size:420% 420%;
   animation:bgGradient 22s ease infinite;
@@ -56,7 +55,7 @@ body{
   100%{ background-position:0% 50%; }
 }
 
-/* camada escura */
+/* camada escura elegante */
 .bg{
   position:fixed;
   inset:0;
@@ -160,19 +159,25 @@ h2{
   color:#0b0e18;
   background:linear-gradient(90deg,var(--pink),var(--pink-soft));
   box-shadow:0 14px 36px rgba(255,90,165,.45);
-  transition:transform .15s ease, box-shadow .15s ease;
+  transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
 }
 
 .btn:hover{
   transform:translateY(-2px);
+  filter:brightness(1.03);
   box-shadow:0 18px 46px rgba(255,90,165,.55);
 }
 
 .btn.ghost{
-  background:transparent;
+  background:rgba(255,255,255,.06);
   color:var(--text);
   border:1px solid var(--stroke);
   box-shadow:none;
+}
+
+.btn:focus-visible{
+  outline:3px solid rgba(255,154,203,.55);
+  outline-offset:3px;
 }
 
 /* =========================
@@ -202,11 +207,13 @@ h2{
   width:100%;
   height:240px;
   object-fit:cover;
-  transition:transform .35s ease;
+  transition:transform .35s ease, filter .35s ease;
+  filter:saturate(1.07) contrast(1.02);
 }
 
 .photo:hover img{
   transform:scale(1.05);
+  filter:saturate(1.15) contrast(1.05);
 }
 
 /* =========================
@@ -262,6 +269,7 @@ h2{
   font-size:13px;
   color:#0b0e18;
   background:linear-gradient(135deg,var(--pink),var(--pink-soft));
+  box-shadow:0 6px 18px rgba(255,90,165,.45);
 }
 
 /* =========================
@@ -275,7 +283,7 @@ h2{
 }
 
 /* =========================
-   MODAL SURPRESA
+   MODAIS (SURPRESA / VÍDEO)
    ========================= */
 .modal{
   position:fixed;
@@ -290,7 +298,7 @@ h2{
 .modal.show{ display:flex; }
 
 .modal-card{
-  width:min(540px,92vw);
+  width:min(560px,92vw);
   background:rgba(15,23,48,.95);
   border:1px solid var(--stroke);
   border-radius:20px;
@@ -304,11 +312,29 @@ h2{
   border-radius:18px;
   overflow:hidden;
   border:1px solid var(--stroke);
+  background:rgba(0,0,0,.25);
 }
 
 .surpresa-img img{
   width:100%;
   height:auto;
+  display:block;
+}
+
+/* vídeo */
+.video-wrap{
+  margin:12px 0 16px;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--stroke);
+  background:rgba(0,0,0,.35);
+}
+
+.video-wrap video{
+  width:100%;
+  height:auto;
+  display:block;
+  max-height:60vh;
 }
 
 /* =========================
@@ -320,11 +346,13 @@ h2{
   display:none;
   align-items:center;
   justify-content:center;
+  gap:12px;
   padding:18px;
   background:rgba(40,10,25,.88);
   z-index:999;
 
-  touch-action: pan-y;
+  /* deixa swipe horizontal sem travar scroll vertical */
+  touch-action:pan-y;
 }
 
 .lightbox.show{ display:flex; }
@@ -370,13 +398,13 @@ h2{
   right:14px;
 }
 
-/* setas ocultas no mobile (swipe resolve) */
+/* no mobile, swipe resolve -> esconder setas */
 @media (max-width:720px){
   .lb-nav{ display:none; }
 }
 
 /* =========================
-   GOLFINHO / EFEITOS
+   EFEITOS (GOLFINHO / CONFETE)
    ========================= */
 .bubble{
   position:fixed;
@@ -384,6 +412,7 @@ h2{
   border-radius:999px;
   border:1px solid rgba(255,154,203,.55);
   background:rgba(255,154,203,.14);
+  box-shadow:0 0 18px rgba(255,90,165,.18);
   z-index:30;
   animation:bubbleUp linear forwards;
 }
@@ -413,7 +442,7 @@ h2{
 }
 
 /* =========================
-   FELIZ 20 ANOS
+   TEXTO "FELIZ 20 ANOS"
    ========================= */
 .feliz-20{
   position:fixed;
@@ -427,9 +456,24 @@ h2{
 .feliz-20 span{
   font-size:clamp(28px,6vw,56px);
   font-weight:900;
+  letter-spacing:1px;
+  text-align:center;
+
   background:linear-gradient(135deg,var(--pink),var(--pink-soft));
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
-  text-align:center;
+
+  text-shadow:0 8px 30px rgba(255,90,165,.55);
+}
+
+/* =========================
+   RESPONSIVO
+   ========================= */
+@media (max-width:780px){
+  .card{ padding:22px; }
+}
+
+@media (max-width:600px){
+  #lbCaption{ font-size:13px; }
 }
