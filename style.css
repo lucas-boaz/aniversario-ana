@@ -1,182 +1,479 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Feliz Aniversário, Ana Luiza ❤️</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+/* =========================================
+   style.css — versão final (com últimas alterações)
+   - Fundo animado rosa/azul suave
+   - Card central escuro (glass)
+   - Galeria em grid responsivo
+   - Lightbox + Modais
+   - Botão Golfinho flutuante (canto inferior direito)
+   - Bolhas (sem fogos)
+   ========================================= */
 
-<body>
-  <div class="bg"></div>
+/* ---------- VARIÁVEIS ---------- */
+:root{
+  --pink:#ff5aa5;
+  --pink-soft:#ff9acb;
+  --blue-soft:#6ee7ff;
 
-  <main class="card">
-    <!-- TOPO -->
-    <header class="top">
-      <div class="badge">🎂 Hoje é o seu dia!</div>
-      <h1>Feliz aniversário, <span id="nome">Ana Luiza</span> ❤️</h1>
-      <p class="sub">
-        Sim, você está ficando mais velha! 😅💘
-      </p>
-    </header>
+  --bg-dark-1:#0b1020;
+  --bg-dark-2:#141b3a;
 
-    <!-- MENSAGEM -->
-    <section class="message">
-      <h2>Uma mensagem pra você</h2>
+  --card:rgba(15, 23, 48, 0.78);
+  --text:#eef3ff;
+  --muted:#b9c4e6;
 
-      <p id="texto">
-        Ana, você é meu lugar de paz. Cada dia ao seu lado me ensina o que é amar de verdade.
-        Você é meu golfinho — leve, livre e cheia de vida — e faz meu coração sorrir mesmo nos dias difíceis.
-        Que essa nova volta ao sol traga tudo o que você merece, e que eu esteja com você em cada capítulo.
-      </p>
+  --stroke:rgba(255,255,255,.12);
+  --shadow:0 22px 70px rgba(0,0,0,.55);
+  --radius:26px;
 
-      <div class="actions">
-        <button id="btnSurpresa" class="btn">✨ Nós dois</button>
-        <button id="btnMusica" class="btn ghost" aria-pressed="false">🎵 Escuta essa aqui</button>
+  --maxw:1180px;
+}
 
-        <!-- (Opcional) pode remover este botão daqui se quiser,
-             porque o botão flutuante vai ficar sempre na tela -->
-        <!-- <button id="btnGolfinho" class="btn ghost" type="button">🐬 Você é um golfinho</button> -->
+/* ---------- RESET ---------- */
+*{ box-sizing:border-box; }
+html,body{
+  height:100%;
+  margin:0;
+  padding:0;
+}
+img,video{ max-width:100%; display:block; }
+button{ font-family:inherit; }
 
-        <button id="btnVideo" class="btn ghost" type="button" aria-haspopup="dialog">🎬 Aqui seu vídeo</button>
-      </div>
+/* ---------- FUNDO ANIMADO ---------- */
+body{
+  color:var(--text);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  overflow-x:hidden;
 
-      <!-- MÚSICA -->
-      <audio id="audio" preload="auto" loop>
-        <source src="musica.mp3" type="audio/mpeg" />
-      </audio>
+  background:linear-gradient(
+    120deg,
+    rgba(255,90,165,.40),
+    rgba(255,154,203,.38),
+    rgba(110,231,255,.18),
+    rgba(255,90,165,.34)
+  );
+  background-size:420% 420%;
+  animation:bgGradient 22s ease infinite;
+}
 
-      <div class="extra">
-        Curta seu dia, meu amor! Obrigado por ser você! Você é uma das melhores coisas que aconteceram em minha vida.
-      </div>
-    </section>
+@keyframes bgGradient{
+  0%{ background-position:0% 50%; }
+  50%{ background-position:100% 50%; }
+  100%{ background-position:0% 50%; }
+}
 
-    <!-- GALERIA -->
-    <section class="gallery">
-      <h2>Olha você aqui</h2>
+/* camada escura para dar contraste */
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:
+    radial-gradient(900px 520px at 18% 12%, rgba(255,90,165,.26), transparent 60%),
+    radial-gradient(900px 520px at 84% 92%, rgba(255,154,203,.20), transparent 60%),
+    radial-gradient(900px 520px at 85% 20%, rgba(110,231,255,.12), transparent 65%),
+    linear-gradient(160deg,var(--bg-dark-1),var(--bg-dark-2));
+}
 
-      <div class="grid">
-        <figure class="photo">
-          <img src="fotos/1.jpg" alt="Você sendo você 💗" loading="lazy">
-        </figure>
+/* ---------- CONTAINER PRINCIPAL ---------- */
+.card{
+  width:min(var(--maxw), 94vw);
+  margin:28px auto 96px;
+  padding:28px;
+  border-radius:var(--radius);
+  background:var(--card);
+  border:1px solid var(--stroke);
+  box-shadow:var(--shadow);
+  backdrop-filter: blur(14px);
+}
 
-        <figure class="photo">
-          <img src="fotos/2.jpg" alt="Divertida e criativa 😋" loading="lazy">
-        </figure>
+section{ padding:22px 4px; }
 
-        <figure class="photo">
-          <img src="fotos/3.jpg" alt="Ousada e cativante 😘" loading="lazy">
-        </figure>
+/* ---------- TOPO ---------- */
+.top{
+  padding-bottom:18px;
+  border-bottom:1px solid var(--stroke);
+}
 
-        <figure class="photo">
-          <img src="fotos/4.jpg" alt="Bonita e resplandecente ✨" loading="lazy">
-        </figure>
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid var(--stroke);
+  background:rgba(255,255,255,.08);
+  color:var(--muted);
+  font-size:14px;
+}
 
-        <figure class="photo">
-          <img src="fotos/5.jpg" alt="Sensual e penetrante 😌" loading="lazy">
-        </figure>
+h1{
+  margin:14px 0 8px;
+  font-size:clamp(28px, 4vw, 50px);
+  line-height:1.08;
+  letter-spacing:-.5px;
+}
 
-        <!-- nova 6: elegante/caprichosa -->
-        <figure class="photo">
-          <img src="fotos/6.jpg" alt="Elegante e caprichosa 👌" loading="lazy">
-        </figure>
+.sub{
+  margin:0;
+  color:var(--muted);
+  font-size:16px;
+}
 
-        <!-- foto 7: aventureira/curiosa -->
-        <figure class="photo">
-          <img src="fotos/7.jpg" alt="Aventureira e curiosa 🌿" loading="lazy">
-        </figure>
+/* ---------- TEXTOS ---------- */
+h2{
+  margin:0 0 12px;
+  font-size:20px;
+  color:rgba(255,255,255,.92);
+}
 
-        <!-- sua antiga 6 vira 8 (mantém o texto da 6 antiga) -->
-        <figure class="photo">
-          <img src="fotos/8.jpg" alt="Você é incrível 💕" loading="lazy">
-        </figure>
-      </div>
-    </section>
+#texto{
+  margin:0 0 14px;
+  font-size:16px;
+  line-height:1.65;
+  color:rgba(255,255,255,.88);
+}
 
-    <!-- 20 MOTIVOS -->
-    <section class="motivos">
-      <h2>20 motivos porque eu te amo</h2>
-      <ol class="motivos-lista">
-        <li>Você é magnânima</li>
-        <li>Você é amorosa</li>
-        <li>Você é inteligente</li>
-        <li>Você é determinada</li>
-        <li>Você é carinhosa</li>
-        <li>Você é estilosa</li>
-        <li>Você é atenciosa</li>
-        <li>Você é divertida</li>
-        <li>Você é cheirosa</li>
-        <li>Você é compreensiva</li>
-        <li>Você é empática</li>
-        <li>Você é comunicativa</li>
-        <li>Você é companheira</li>
-        <li>Você é verdadeira</li>
-        <li>Você é gostosa</li>
-        <li>Você é linda</li>
-        <li>Você é autêntica</li>
-        <li>Você é talentosa</li>
-        <li>Você é forte</li>
-        <li><strong>VOCÊ É INCRÍVEL</strong></li>
-      </ol>
-    </section>
+.extra{
+  margin-top:12px;
+  padding:14px 16px;
+  border-radius:18px;
+  border:1px solid var(--stroke);
+  background:rgba(255,255,255,.06);
+  color:var(--muted);
+}
 
-    <!-- RODAPÉ -->
-    <footer class="footer">
-      <p>Feito com amor, por <span id="assinatura">Lucas</span> 💙</p>
-    </footer>
-  </main>
+/* ---------- BOTÕES (LINHA) ---------- */
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:14px 0;
+}
 
-  <!-- BOTÃO FLUTUANTE (GOLFINHO) -->
-  <button id="btnGolfinho" class="btn" type="button" aria-label="Golfinho">
-    🐬 Você é um golfinho
-  </button>
+.btn{
+  padding:12px 18px;
+  border-radius:16px;
+  border:none;
+  cursor:pointer;
+  font-weight:800;
+  color:#0b0e18;
+  background:linear-gradient(90deg, var(--pink), var(--pink-soft));
+  box-shadow:0 14px 36px rgba(255,90,165,.45);
+  transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
+}
 
-  <!-- MODAL SURPRESA -->
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Surpresa">
-      <h3>🌟 Eu te amo!</h3>
+.btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.04);
+  box-shadow:0 18px 48px rgba(255,90,165,.55);
+}
 
-      <div class="surpresa-img">
-        <img src="fotos/surpresa.jpg" alt="Nosso momento especial">
-      </div>
+.btn:active{ transform:translateY(0) scale(.98); }
 
-      <p id="surpresaTexto">
-        Ana, que esse novo ciclo venha leve, cheio de sorrisos, sonhos realizados e muito amor. Eu te amo.
-      </p>
+.btn.ghost{
+  background:rgba(255,255,255,.06);
+  color:var(--text);
+  border:1px solid var(--stroke);
+  box-shadow:none;
+}
 
-      <button class="btn" id="btnFechar">Fechar</button>
-    </div>
-  </div>
+/* ---------- GALERIA ---------- */
+.gallery{
+  border-top:1px solid var(--stroke);
+  padding-left:0;
+  padding-right:0;
+}
 
-  <!-- MODAL VÍDEO -->
-  <div class="modal" id="videoModal" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Vídeo">
-      <h3>🎬 Um vídeo pra você</h3>
+.grid{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:18px;
+}
 
-      <div class="video-wrap">
-        <video id="meuVideo" controls playsinline preload="metadata">
-          <source src="video.mp4" type="video/mp4">
-          Seu navegador não suporta vídeo.
-        </video>
-      </div>
+.photo{
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--stroke);
+  background:rgba(0,0,0,.20);
+}
 
-      <button class="btn" id="btnFecharVideo">Fechar</button>
-    </div>
-  </div>
+.photo img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  filter:saturate(1.08) contrast(1.02);
+  transition:transform .35s ease, filter .35s ease;
+}
 
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lb-close" id="lbClose" aria-label="Fechar">✕</button>
-    <button class="lb-nav" id="lbPrev" aria-label="Anterior">‹</button>
+.photo:hover img{
+  transform:scale(1.06);
+  filter:saturate(1.15) contrast(1.05);
+}
 
-    <figure class="lb-figure">
-      <img id="lbImg" alt="">
-      <figcaption id="lbCaption"></figcaption>
-    </figure>
+/* ---------- MOTIVOS ---------- */
+.motivos{
+  margin-top:26px;
+  padding:26px 22px;
+  border-radius:24px;
+  border:1px solid var(--stroke);
+  background:
+    radial-gradient(600px 300px at 12% 0%, rgba(255,90,165,.18), transparent 60%),
+    radial-gradient(600px 300px at 88% 100%, rgba(255,154,203,.14), transparent 60%),
+    rgba(255,255,255,.04);
+}
 
-    <button class="lb-nav" id="lbNext" aria-label="Próxima">›</button>
-  </div>
+.motivos h2{
+  text-align:center;
+  margin-bottom:18px;
+  font-size:22px;
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+.motivos-lista{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:10px;
+  counter-reset: motivo;
+}
+
+.motivos-lista li{
+  counter-increment: motivo;
+  position:relative;
+  padding:14px 16px 14px 54px;
+  border-radius:16px;
+  border:1px solid var(--stroke);
+  background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.90);
+}
+
+.motivos-lista li::before{
+  content: counter(motivo);
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  font-size:13px;
+  color:#0b0e18;
+  background:linear-gradient(135deg, var(--pink), var(--pink-soft));
+  box-shadow:0 8px 18px rgba(255,90,165,.40);
+}
+
+/* ---------- RODAPÉ ---------- */
+.footer{
+  border-top:1px solid var(--stroke);
+  padding-top:16px;
+  text-align:center;
+  color:var(--muted);
+}
+
+/* ---------- MODAIS ---------- */
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(0,0,0,.65);
+  z-index:1200;
+}
+
+.modal.show{ display:flex; }
+
+.modal-card{
+  width:min(560px, 92vw);
+  border-radius:22px;
+  border:1px solid var(--stroke);
+  background:rgba(15, 23, 48, 0.96);
+  box-shadow:var(--shadow);
+  padding:22px;
+}
+
+.modal-card h3{
+  margin:0 0 8px;
+  font-size:20px;
+}
+
+.surpresa-img{
+  margin:12px auto 16px;
+  max-width:420px;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--stroke);
+  background:rgba(0,0,0,.25);
+}
+
+.surpresa-img img{ width:100%; height:auto; }
+
+.video-wrap{
+  margin:12px 0 16px;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--stroke);
+  background:rgba(0,0,0,.35);
+}
+
+.video-wrap video{
+  width:100%;
+  height:auto;
+  max-height:60vh;
+}
+
+/* ---------- LIGHTBOX ---------- */
+.lightbox{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:18px;
+  background:rgba(40,10,25,.88);
+  z-index:2000;
+  touch-action:pan-y; /* swipe horizontal sem travar scroll vertical */
+}
+
+.lightbox.show{ display:flex; }
+
+.lb-figure{
+  width:min(900px, 92vw);
+  max-height:88vh;
+  display:grid;
+  gap:10px;
+  place-items:center;
+}
+
+#lbImg{
+  width:100%;
+  max-height:75vh;
+  object-fit:contain;
+  border-radius:18px;
+  border:1px solid var(--stroke);
+  background:rgba(0,0,0,.25);
+}
+
+#lbCaption{
+  font-size:14px;
+  color:var(--muted);
+  text-align:center;
+  padding:0 12px;
+}
+
+.lb-close,.lb-nav{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  border:1px solid var(--stroke);
+  background:rgba(255,255,255,.08);
+  color:var(--text);
+  cursor:pointer;
+  font-size:22px;
+}
+
+.lb-close{
+  position:fixed;
+  top:14px;
+  right:14px;
+}
+
+@media (max-width:720px){
+  .lb-nav{ display:none; } /* no mobile swipe resolve */
+}
+
+/* ---------- BOTÃO GOLFINHO FLUTUANTE ---------- */
+#btnGolfinho{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:3000;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  padding:14px 18px;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  font-weight:900;
+
+  background:linear-gradient(135deg, var(--pink), var(--pink-soft));
+  color:#0b0e18;
+  box-shadow:0 18px 50px rgba(255,90,165,.45);
+  transition:transform .15s ease, filter .15s ease;
+}
+
+#btnGolfinho:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.04);
+}
+
+#btnGolfinho:active{
+  transform:translateY(0) scale(.98);
+}
+
+/* ---------- BOLHAS ---------- */
+.bubble{
+  position:fixed;
+  bottom:-30px;
+  border-radius:999px;
+  border:1px solid rgba(255,154,203,.55);
+  background:rgba(255,154,203,.14);
+  box-shadow:0 0 18px rgba(255,90,165,.18);
+  z-index:2600;
+  animation:bubbleUp linear forwards;
+}
+
+@keyframes bubbleUp{
+  to{
+    transform:translateY(-110vh) translateX(var(--dx)) scale(var(--s));
+    opacity:0;
+  }
+}
+
+/* ---------- TEXTO FELIZ 20 ANOS ---------- */
+.feliz-20{
+  position:fixed;
+  inset:0;
+  display:grid;
+  place-items:center;
+  pointer-events:none;
+  z-index:2800;
+}
+
+.feliz-20 span{
+  font-size:clamp(28px,6vw,56px);
+  font-weight:1000;
+  letter-spacing:0.5px;
+  text-align:center;
+
+  background:linear-gradient(135deg, var(--pink), var(--pink-soft));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+
+  text-shadow:0 8px 30px rgba(255,90,165,.55);
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width:780px){
+  .card{ padding:22px; }
+  h1{ font-size:clamp(26px, 7vw, 44px); }
+}
+
+@media (max-width:600px){
+  .photo img{ height:200px; }
+  #btnGolfinho{
+    right:14px;
+    bottom:14px;
+    padding:13px 15px;
+  }
+}
