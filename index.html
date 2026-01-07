@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feliz Aniversário, Ana ❤️</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- FUNDO -->
+  <div class="bg"></div>
+
+  <main class="card">
+
+    <!-- TOPO -->
+    <header class="top">
+      <div class="badge">🎂 Hoje é o seu dia!</div>
+      <h1>Feliz aniversário, <span id="nome">Ana</span> ❤️</h1>
+      <p class="sub">
+        <span id="frase">Você é meu lugar de paz. 💖</span>
+      </p>
+    </header>
+
+    <!-- MENSAGEM -->
+    <section class="message">
+      <h2>Uma mensagem pra você</h2>
+
+      <p id="texto">
+        Ana, você é meu lugar de paz. Cada dia ao seu lado me ensina o que é amar de verdade.
+        Você é meu golfinho — leve, livre e cheia de vida — e faz meu coração sorrir mesmo nos dias difíceis.
+        Que essa nova volta ao sol traga tudo o que você merece, e que eu esteja com você em cada capítulo.
+      </p>
+
+      <!-- BOTÕES -->
+      <div class="actions">
+        <button id="btnSurpresa" class="btn">✨ Clique para uma surpresa</button>
+        <button id="btnMusica" class="btn ghost" aria-pressed="false">🎵 Música</button>
+        <button id="btnGolfinho" class="btn ghost" type="button">🐬 Golfinho</button>
+      </div>
+
+      <!-- ÁUDIO -->
+      <audio id="audio" preload="auto" loop>
+        <source src="musica.mp3" type="audio/mpeg" />
+      </audio>
+
+      <p class="extra">
+        Curta seu dia, meu amor! Obrigado por ser você!  
+        Você é uma das melhores coisas que aconteceram em minha vida.
+      </p>
+    </section>
+
+    <!-- GALERIA -->
+    <section class="gallery">
+      <h2>Olha você aqui</h2>
+
+      <div class="grid">
+        <figure class="photo">
+          <img src="fotos/1.jpg" alt="Você sendo você" loading="lazy">
+        </figure>
+        <figure class="photo">
+          <img src="fotos/2.jpg" alt="Brincalhona e sorridente" loading="lazy">
+        </figure>
+        <figure class="photo">
+          <img src="fotos/3.jpg" alt="Gostosa e ousada" loading="lazy">
+        </figure>
+        <figure class="photo">
+          <img src="fotos/4.jpg" alt="Bonita e resplandecente" loading="lazy">
+        </figure>
+        <figure class="photo">
+          <img src="fotos/5.jpg" alt="Charmosa e cativante" loading="lazy">
+        </figure>
+        <figure class="photo">
+          <img src="fotos/6.jpg" alt="Você, sempre incrível" loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+    <!-- 20 MOTIVOS -->
+    <section class="motivos">
+      <h2>20 motivos porque eu te amo</h2>
+
+      <ol class="motivos-lista">
+        <li>Porque é MAGNÂNIMA.</li>
+        <li>Você é amorosa.</li>
+        <li>Você é inteligente.</li>
+        <li>Você é determinada.</li>
+        <li>Você é carinhosa.</li>
+        <li>Você é estilosa.</li>
+        <li>Você é atenciosa.</li>
+        <li>Você é divertida.</li>
+        <li>Você é cheirosa.</li>
+        <li>Você é compreensiva.</li>
+        <li>Você é empática.</li>
+        <li>Você é comunicativa.</li>
+        <li>Você é companheira.</li>
+        <li>Você é verdadeira.</li>
+        <li>Você é gostosa.</li>
+        <li>Você é linda.</li>
+        <li>Você é autêntica.</li>
+        <li>Você é talentosa.</li>
+        <li>Você é forte.</li>
+        <li><strong>Você é INCRÍVEL.</strong></li>
+      </ol>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+      <p>Feito com amor, por <span id="assinatura">Lucas</span> 💙</p>
+    </footer>
+
+  </main>
+
+  <!-- MODAL SURPRESA -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Surpresa">
+
+      <h3>🌟 Eu te amo!</h3>
+
+      <div class="surpresa-img">
+        <img src="fotos/surpresa.jpg" alt="Nosso momento especial">
+      </div>
+
+      <p id="surpresaTexto">
+        Ana, que esse novo ciclo venha leve, cheio de sorrisos, sonhos realizados e muito amor. Eu te amo!
+      </p>
+
+      <button class="btn" id="btnFechar">Fechar</button>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-close" id="lbClose" aria-label="Fechar">✕</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Foto anterior">‹</button>
+
+    <figure class="lb-figure">
+      <img id="lbImg" alt="Foto ampliada">
+      <figcaption id="lbCaption"></figcaption>
+    </figure>
+
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Próxima foto">›</button>
+  </div>
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+</body>
+</html>
