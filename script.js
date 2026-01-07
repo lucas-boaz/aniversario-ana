@@ -177,7 +177,7 @@ function mostrarFeliz20(){
   wrap.className = "feliz-20";
 
   const texto = document.createElement("span");
-  texto.textContent = "Feliz 20 anos 💖";
+  texto.textContent = "Feliz 20 anos, meu golfinho 💖";
 
   wrap.appendChild(texto);
   document.body.appendChild(wrap);
@@ -214,3 +214,4 @@ function soltarConfete(qtd = 120){
    INICIALIZAÇÃO
    ========================= */
 atualizarBotaoMusica(false);
+
