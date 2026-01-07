@@ -1,479 +1,182 @@
-/* =========================
-   VARIÁVEIS (ROSA DOMINANTE)
-   ========================= */
-:root{
-  --pink:#ff5aa5;
-  --pink-soft:#ff9acb;
-  --blue-soft:#6ee7ff;
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feliz Aniversário, Ana Luiza ❤️</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-  --bg-dark-1:#0b1020;
-  --bg-dark-2:#141b3a;
+<body>
+  <div class="bg"></div>
 
-  --card:#0f1730cc;
-  --text:#eef3ff;
-  --muted:#b9c4e6;
+  <main class="card">
+    <!-- TOPO -->
+    <header class="top">
+      <div class="badge">🎂 Hoje é o seu dia!</div>
+      <h1>Feliz aniversário, <span id="nome">Ana Luiza</span> ❤️</h1>
+      <p class="sub">
+        Sim, você está ficando mais velha! 😅💘
+      </p>
+    </header>
 
-  --stroke:#ffffff1a;
-  --shadow:0 22px 70px rgba(0,0,0,.55);
-  --radius:24px;
+    <!-- MENSAGEM -->
+    <section class="message">
+      <h2>Uma mensagem pra você</h2>
 
-  --maxw:1200px;
-}
+      <p id="texto">
+        Ana, você é meu lugar de paz. Cada dia ao seu lado me ensina o que é amar de verdade.
+        Você é meu golfinho — leve, livre e cheia de vida — e faz meu coração sorrir mesmo nos dias difíceis.
+        Que essa nova volta ao sol traga tudo o que você merece, e que eu esteja com você em cada capítulo.
+      </p>
 
-/* =========================
-   RESET
-   ========================= */
-*{ box-sizing:border-box; }
-html,body{
-  height:100%;
-  margin:0;
-  overscroll-behavior:none;
-}
+      <div class="actions">
+        <button id="btnSurpresa" class="btn">✨ Nós dois</button>
+        <button id="btnMusica" class="btn ghost" aria-pressed="false">🎵 Escuta essa aqui</button>
 
-/* =========================
-   FUNDO ANIMADO (ROSA)
-   ========================= */
-body{
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--text);
-  overflow-x:hidden;
+        <!-- (Opcional) pode remover este botão daqui se quiser,
+             porque o botão flutuante vai ficar sempre na tela -->
+        <!-- <button id="btnGolfinho" class="btn ghost" type="button">🐬 Você é um golfinho</button> -->
 
-  background: linear-gradient(
-    120deg,
-    rgba(255,90,165,.38),
-    rgba(255,154,203,.36),
-    rgba(110,231,255,.14),
-    rgba(255,90,165,.34)
-  );
-  background-size:420% 420%;
-  animation:bgGradient 22s ease infinite;
-}
+        <button id="btnVideo" class="btn ghost" type="button" aria-haspopup="dialog">🎬 Aqui seu vídeo</button>
+      </div>
 
-@keyframes bgGradient{
-  0%{ background-position:0% 50%; }
-  50%{ background-position:100% 50%; }
-  100%{ background-position:0% 50%; }
-}
+      <!-- MÚSICA -->
+      <audio id="audio" preload="auto" loop>
+        <source src="musica.mp3" type="audio/mpeg" />
+      </audio>
 
-/* camada escura elegante */
-.bg{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  background:
-    radial-gradient(900px 520px at 20% 10%, rgba(255,90,165,.30), transparent 60%),
-    radial-gradient(900px 520px at 80% 90%, rgba(255,154,203,.26), transparent 60%),
-    radial-gradient(900px 520px at 80% 20%, rgba(110,231,255,.10), transparent 65%),
-    linear-gradient(160deg,var(--bg-dark-1),var(--bg-dark-2));
-}
+      <div class="extra">
+        Curta seu dia, meu amor! Obrigado por ser você! Você é uma das melhores coisas que aconteceram em minha vida.
+      </div>
+    </section>
 
-/* =========================
-   CARD PRINCIPAL
-   ========================= */
-.card{
-  width:min(var(--maxw),94vw);
-  margin:28px auto 64px;
-  padding:28px;
-  background:var(--card);
-  border:1px solid var(--stroke);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  backdrop-filter:blur(14px);
-}
+    <!-- GALERIA -->
+    <section class="gallery">
+      <h2>Olha você aqui</h2>
 
-/* =========================
-   TOPO
-   ========================= */
-.top{
-  padding-bottom:18px;
-  border-bottom:1px solid var(--stroke);
-}
+      <div class="grid">
+        <figure class="photo">
+          <img src="fotos/1.jpg" alt="Você sendo você 💗" loading="lazy">
+        </figure>
 
-.badge{
-  display:inline-block;
-  padding:8px 14px;
-  margin-bottom:14px;
-  border-radius:999px;
-  border:1px solid var(--stroke);
-  background:rgba(255,255,255,.08);
-  color:var(--muted);
-  font-size:14px;
-}
+        <figure class="photo">
+          <img src="fotos/2.jpg" alt="Divertida e criativa 😋" loading="lazy">
+        </figure>
 
-h1{
-  margin:0 0 8px;
-  font-size:clamp(28px,4vw,46px);
-  line-height:1.1;
-}
+        <figure class="photo">
+          <img src="fotos/3.jpg" alt="Ousada e cativante 😘" loading="lazy">
+        </figure>
 
-.sub{
-  color:var(--muted);
-  font-size:16px;
-}
+        <figure class="photo">
+          <img src="fotos/4.jpg" alt="Bonita e resplandecente ✨" loading="lazy">
+        </figure>
 
-/* =========================
-   SEÇÕES
-   ========================= */
-section{ padding:22px 4px; }
+        <figure class="photo">
+          <img src="fotos/5.jpg" alt="Sensual e penetrante 😌" loading="lazy">
+        </figure>
 
-h2{
-  margin:0 0 12px;
-  font-size:18px;
-  color:#ffffffee;
-}
+        <!-- nova 6: elegante/caprichosa -->
+        <figure class="photo">
+          <img src="fotos/6.jpg" alt="Elegante e caprichosa 👌" loading="lazy">
+        </figure>
 
-/* =========================
-   TEXTO
-   ========================= */
-#texto{
-  font-size:16px;
-  line-height:1.65;
-  margin:0 0 14px;
-}
+        <!-- foto 7: aventureira/curiosa -->
+        <figure class="photo">
+          <img src="fotos/7.jpg" alt="Aventureira e curiosa 🌿" loading="lazy">
+        </figure>
 
-.extra{
-  margin-top:12px;
-  padding:12px 14px;
-  border-radius:16px;
-  border:1px solid var(--stroke);
-  background:rgba(255,255,255,.06);
-  color:var(--muted);
-}
+        <!-- sua antiga 6 vira 8 (mantém o texto da 6 antiga) -->
+        <figure class="photo">
+          <img src="fotos/8.jpg" alt="Você é incrível 💕" loading="lazy">
+        </figure>
+      </div>
+    </section>
 
-/* =========================
-   BOTÕES
-   ========================= */
-.actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:14px 0;
-}
+    <!-- 20 MOTIVOS -->
+    <section class="motivos">
+      <h2>20 motivos porque eu te amo</h2>
+      <ol class="motivos-lista">
+        <li>Você é magnânima</li>
+        <li>Você é amorosa</li>
+        <li>Você é inteligente</li>
+        <li>Você é determinada</li>
+        <li>Você é carinhosa</li>
+        <li>Você é estilosa</li>
+        <li>Você é atenciosa</li>
+        <li>Você é divertida</li>
+        <li>Você é cheirosa</li>
+        <li>Você é compreensiva</li>
+        <li>Você é empática</li>
+        <li>Você é comunicativa</li>
+        <li>Você é companheira</li>
+        <li>Você é verdadeira</li>
+        <li>Você é gostosa</li>
+        <li>Você é linda</li>
+        <li>Você é autêntica</li>
+        <li>Você é talentosa</li>
+        <li>Você é forte</li>
+        <li><strong>VOCÊ É INCRÍVEL</strong></li>
+      </ol>
+    </section>
 
-.btn{
-  padding:12px 18px;
-  border-radius:16px;
-  border:none;
-  cursor:pointer;
-  font-weight:800;
-  color:#0b0e18;
-  background:linear-gradient(90deg,var(--pink),var(--pink-soft));
-  box-shadow:0 14px 36px rgba(255,90,165,.45);
-  transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
-}
+    <!-- RODAPÉ -->
+    <footer class="footer">
+      <p>Feito com amor, por <span id="assinatura">Lucas</span> 💙</p>
+    </footer>
+  </main>
 
-.btn:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.03);
-  box-shadow:0 18px 46px rgba(255,90,165,.55);
-}
+  <!-- BOTÃO FLUTUANTE (GOLFINHO) -->
+  <button id="btnGolfinho" class="btn" type="button" aria-label="Golfinho">
+    🐬 Você é um golfinho
+  </button>
 
-.btn.ghost{
-  background:rgba(255,255,255,.06);
-  color:var(--text);
-  border:1px solid var(--stroke);
-  box-shadow:none;
-}
+  <!-- MODAL SURPRESA -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Surpresa">
+      <h3>🌟 Eu te amo!</h3>
 
-.btn:focus-visible{
-  outline:3px solid rgba(255,154,203,.55);
-  outline-offset:3px;
-}
+      <div class="surpresa-img">
+        <img src="fotos/surpresa.jpg" alt="Nosso momento especial">
+      </div>
 
-/* =========================
-   GALERIA (FLUIDA)
-   ========================= */
-.gallery{
-  border-top:1px solid var(--stroke);
-  padding-left:0;
-  padding-right:0;
-}
+      <p id="surpresaTexto">
+        Ana, que esse novo ciclo venha leve, cheio de sorrisos, sonhos realizados e muito amor. Eu te amo.
+      </p>
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
-  gap:18px;
-  margin-top:14px;
-}
+      <button class="btn" id="btnFechar">Fechar</button>
+    </div>
+  </div>
 
-.photo{
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid var(--stroke);
-  background:#00000033;
-}
+  <!-- MODAL VÍDEO -->
+  <div class="modal" id="videoModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Vídeo">
+      <h3>🎬 Um vídeo pra você</h3>
 
-.photo img{
-  width:100%;
-  height:240px;
-  object-fit:cover;
-  transition:transform .35s ease, filter .35s ease;
-  filter:saturate(1.07) contrast(1.02);
-}
+      <div class="video-wrap">
+        <video id="meuVideo" controls playsinline preload="metadata">
+          <source src="video.mp4" type="video/mp4">
+          Seu navegador não suporta vídeo.
+        </video>
+      </div>
 
-.photo:hover img{
-  transform:scale(1.05);
-  filter:saturate(1.15) contrast(1.05);
-}
+      <button class="btn" id="btnFecharVideo">Fechar</button>
+    </div>
+  </div>
 
-/* =========================
-   20 MOTIVOS
-   ========================= */
-.motivos{
-  margin-top:26px;
-  padding:26px 22px;
-  border-radius:22px;
-  border:1px solid var(--stroke);
-  background:
-    radial-gradient(600px 300px at 10% 0%, rgba(255,90,165,.20), transparent 60%),
-    radial-gradient(600px 300px at 90% 100%, rgba(255,154,203,.18), transparent 60%),
-    rgba(255,255,255,.04);
-}
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-close" id="lbClose" aria-label="Fechar">✕</button>
+    <button class="lb-nav" id="lbPrev" aria-label="Anterior">‹</button>
 
-.motivos h2{
-  text-align:center;
-  margin-bottom:18px;
-  font-size:20px;
-}
+    <figure class="lb-figure">
+      <img id="lbImg" alt="">
+      <figcaption id="lbCaption"></figcaption>
+    </figure>
 
-.motivos-lista{
-  counter-reset: motivo;
-  list-style:none;
-  padding:0;
-  margin:0;
-  display:grid;
-  gap:10px;
-}
+    <button class="lb-nav" id="lbNext" aria-label="Próxima">›</button>
+  </div>
 
-.motivos-lista li{
-  counter-increment: motivo;
-  position:relative;
-  padding:14px 16px 14px 54px;
-  border-radius:16px;
-  background:rgba(255,255,255,.06);
-  border:1px solid var(--stroke);
-}
-
-.motivos-lista li::before{
-  content: counter(motivo);
-  position:absolute;
-  left:14px;
-  top:50%;
-  transform:translateY(-50%);
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  font-weight:800;
-  font-size:13px;
-  color:#0b0e18;
-  background:linear-gradient(135deg,var(--pink),var(--pink-soft));
-  box-shadow:0 6px 18px rgba(255,90,165,.45);
-}
-
-/* =========================
-   RODAPÉ
-   ========================= */
-.footer{
-  border-top:1px solid var(--stroke);
-  padding-top:16px;
-  text-align:center;
-  color:var(--muted);
-}
-
-/* =========================
-   MODAIS (SURPRESA / VÍDEO)
-   ========================= */
-.modal{
-  position:fixed;
-  inset:0;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  background:rgba(0,0,0,.65);
-  z-index:10;
-}
-
-.modal.show{ display:flex; }
-
-.modal-card{
-  width:min(560px,92vw);
-  background:rgba(15,23,48,.95);
-  border:1px solid var(--stroke);
-  border-radius:20px;
-  padding:22px;
-  box-shadow:var(--shadow);
-}
-
-.surpresa-img{
-  margin:12px auto 16px;
-  max-width:420px;
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid var(--stroke);
-  background:rgba(0,0,0,.25);
-}
-
-.surpresa-img img{
-  width:100%;
-  height:auto;
-  display:block;
-}
-
-/* vídeo */
-.video-wrap{
-  margin:12px 0 16px;
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid var(--stroke);
-  background:rgba(0,0,0,.35);
-}
-
-.video-wrap video{
-  width:100%;
-  height:auto;
-  display:block;
-  max-height:60vh;
-}
-
-/* =========================
-   LIGHTBOX (SWIPE FRIENDLY)
-   ========================= */
-.lightbox{
-  position:fixed;
-  inset:0;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  padding:18px;
-  background:rgba(40,10,25,.88);
-  z-index:999;
-
-  /* deixa swipe horizontal sem travar scroll vertical */
-  touch-action:pan-y;
-}
-
-.lightbox.show{ display:flex; }
-
-.lb-figure{
-  width:min(900px,92vw);
-  max-height:88vh;
-  display:grid;
-  gap:10px;
-  place-items:center;
-}
-
-#lbImg{
-  width:100%;
-  max-height:75vh;
-  object-fit:contain;
-  border-radius:18px;
-  border:1px solid var(--stroke);
-  background:#00000040;
-}
-
-#lbCaption{
-  font-size:14px;
-  color:var(--muted);
-  text-align:center;
-  padding:0 12px;
-}
-
-.lb-close,.lb-nav{
-  width:44px;
-  height:44px;
-  border-radius:14px;
-  border:1px solid var(--stroke);
-  background:rgba(255,255,255,.08);
-  color:var(--text);
-  cursor:pointer;
-  font-size:22px;
-}
-
-.lb-close{
-  position:fixed;
-  top:14px;
-  right:14px;
-}
-
-/* no mobile, swipe resolve -> esconder setas */
-@media (max-width:720px){
-  .lb-nav{ display:none; }
-}
-
-/* =========================
-   EFEITOS (GOLFINHO / CONFETE)
-   ========================= */
-.bubble{
-  position:fixed;
-  bottom:-30px;
-  border-radius:999px;
-  border:1px solid rgba(255,154,203,.55);
-  background:rgba(255,154,203,.14);
-  box-shadow:0 0 18px rgba(255,90,165,.18);
-  z-index:30;
-  animation:bubbleUp linear forwards;
-}
-
-@keyframes bubbleUp{
-  to{
-    transform:translateY(-110vh) translateX(var(--dx)) scale(var(--s));
-    opacity:0;
-  }
-}
-
-.confetti{
-  position:fixed;
-  top:-10px;
-  width:10px;
-  height:14px;
-  border-radius:3px;
-  opacity:.9;
-  z-index:20;
-  animation:fall linear forwards;
-}
-
-@keyframes fall{
-  to{
-    transform:translateY(110vh) rotate(360deg);
-  }
-}
-
-/* =========================
-   TEXTO "FELIZ 20 ANOS"
-   ========================= */
-.feliz-20{
-  position:fixed;
-  inset:0;
-  display:grid;
-  place-items:center;
-  pointer-events:none;
-  z-index:50;
-}
-
-.feliz-20 span{
-  font-size:clamp(28px,6vw,56px);
-  font-weight:900;
-  letter-spacing:1px;
-  text-align:center;
-
-  background:linear-gradient(135deg,var(--pink),var(--pink-soft));
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-
-  text-shadow:0 8px 30px rgba(255,90,165,.55);
-}
-
-/* =========================
-   RESPONSIVO
-   ========================= */
-@media (max-width:780px){
-  .card{ padding:22px; }
-}
-
-@media (max-width:600px){
-  #lbCaption{ font-size:13px; }
-}
+  <script src="script.js"></script>
+</body>
+</html>
