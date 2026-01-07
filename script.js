@@ -6,6 +6,11 @@ const assinatura = "Lucas";
 const frase = "Você é meu lugar de paz. 💖";
 
 /* =========================
+   MOBILE (pra não ficar esquisito)
+   ========================= */
+const isMobile = window.innerWidth < 768;
+
+/* =========================
    ATALHO
    ========================= */
 const $ = (id) => document.getElementById(id);
@@ -32,8 +37,9 @@ function abrirModal(){
   if (!modal) return;
   modal.classList.add("show");
   modal.setAttribute("aria-hidden", "false");
+  // pausa o gradiente animado quando abre o modal (deixa mais “limpo”)
   document.body.style.animationPlayState = "paused";
-  soltarConfete(140);
+  soltarConfete(isMobile ? 70 : 140);
 }
 
 function fecharModal(){
@@ -52,8 +58,12 @@ if (modal){
   });
 }
 
+/* ESC fecha modal e lightbox */
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") fecharModal();
+  if (e.key === "Escape"){
+    fecharModal();
+    fecharLightbox();
+  }
 });
 
 /* =========================
@@ -74,7 +84,7 @@ async function toggleMusica(){
     if (audio.paused){
       await audio.play();
       atualizarBotaoMusica(true);
-      soltarConfete(36);
+      soltarConfete(isMobile ? 14 : 36);
     } else {
       audio.pause();
       atualizarBotaoMusica(false);
@@ -152,7 +162,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 /* =========================
-   BOTÃO GOLFINHO
+   BOTÃO GOLFINHO (LEVES NO MOBILE)
    ========================= */
 const btnGolfinho = $("btnGolfinho");
 
@@ -161,9 +171,12 @@ function soltarBolhas(qtd = 20){
     const bolha = document.createElement("div");
     bolha.className = "bubble";
     bolha.style.left = Math.random() * 100 + "vw";
-    bolha.style.width = bolha.style.height = 8 + Math.random() * 18 + "px";
-    bolha.style.animationDuration = 3 + Math.random() * 2 + "s";
-    bolha.style.setProperty("--dx", (Math.random() * 80 - 40) + "px");
+
+    const size = 8 + Math.random() * (isMobile ? 10 : 18);
+    bolha.style.width = bolha.style.height = size + "px";
+
+    bolha.style.animationDuration = (isMobile ? 2.4 : 3) + Math.random() * (isMobile ? 1.2 : 2) + "s";
+    bolha.style.setProperty("--dx", (Math.random() * (isMobile ? 40 : 80) - (isMobile ? 20 : 40)) + "px");
     bolha.style.setProperty("--s", (0.6 + Math.random() * 1.2).toFixed(2));
 
     document.body.appendChild(bolha);
@@ -171,13 +184,16 @@ function soltarBolhas(qtd = 20){
   }
 }
 
-/* texto Feliz 20 anos */
 function mostrarFeliz20(){
+  // evita “spam” se clicar várias vezes
+  const existente = document.querySelector(".feliz-20");
+  if (existente) existente.remove();
+
   const wrap = document.createElement("div");
   wrap.className = "feliz-20";
 
   const texto = document.createElement("span");
-  texto.textContent = "Feliz 20 anos, meu golfinho 💖";
+  texto.textContent = "Feliz 20 anos, meu golfinho 🐬💖";
 
   wrap.appendChild(texto);
   document.body.appendChild(wrap);
@@ -187,23 +203,22 @@ function mostrarFeliz20(){
 
 if (btnGolfinho){
   btnGolfinho.addEventListener("click", () => {
-    soltarBolhas(24);
-    soltarConfete(22);
+    soltarBolhas(isMobile ? 10 : 24);
+    soltarConfete(isMobile ? 8 : 22);
     mostrarFeliz20();
   });
 }
 
 /* =========================
-   CONFETE
+   CONFETE (MAIS LEVE NO MOBILE)
    ========================= */
 function soltarConfete(qtd = 120){
   for (let i = 0; i < qtd; i++){
     const confete = document.createElement("div");
     confete.className = "confetti";
     confete.style.left = Math.random() * 100 + "vw";
-    confete.style.background =
-      Math.random() > 0.5 ? "#ff5aa5" : "#ff9acb";
-    confete.style.animationDuration = 2.5 + Math.random() * 2 + "s";
+    confete.style.background = Math.random() > 0.5 ? "#ff5aa5" : "#ff9acb";
+    confete.style.animationDuration = (isMobile ? 2.2 : 2.5) + Math.random() * (isMobile ? 1.2 : 2) + "s";
 
     document.body.appendChild(confete);
     setTimeout(() => confete.remove(), 5200);
@@ -214,4 +229,3 @@ function soltarConfete(qtd = 120){
    INICIALIZAÇÃO
    ========================= */
 atualizarBotaoMusica(false);
-
